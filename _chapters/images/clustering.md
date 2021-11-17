@@ -61,9 +61,11 @@ $$
 #### Clustering
 Clustarizing can also be used for summarization. In this case, our goal is to minimize the variance in data given clusters and to preserve information.
 In this case, our formula is
+
 $$
 c^*, \delta^* = argmin_{c, \delta} \frac{1}{N} \sum_{j}^{N}\sum_{i}^{K}\delta_{ij} (c_i - x_j)^2
 $$
+
 where $c_i$ is the clustering center and $x_j$ is the data
 
 
