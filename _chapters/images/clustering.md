@@ -209,9 +209,17 @@ In practice, the mean-shift calculation above can be analyzed into three procedu
 
 
 Additionally, there could be many different choices of the kernel function $K(x)$. Here is some examples:
-1. Rectangular: $$\phi(x) = \begin{cases} 1 \quad &a\leq x\leq b \\ 0 \quad &else \end{cases}$$
-2. Gaussian: $$\phi(x) = e^{-\frac{x_2}{2\sigma^2}}$$
-3. Epanechnikov: $$\phi(x) = \begin{cases} \frac{3}{4}(1-x^2) \quad if|x|\leq1 \\ 0 \quad else \end{cases}$$
+1. Rectangular:
+
+$$\phi(x) = \begin{cases} 1 \quad &a\leq x\leq b \\ 0 \quad &else \end{cases}$$
+
+2. Gaussian:
+
+$$\phi(x) = e^{-\frac{x_2}{2\sigma^2}}$$
+
+3. Epanechnikov: 
+
+$$\phi(x) = \begin{cases} \frac{3}{4}(1-x^2) \quad &if|x|\leq1 \\ 0 \quad &else \end{cases}$$
 
 <a name='Summary Mean-Shift'></a>
 ### Summary Mean-Shift
