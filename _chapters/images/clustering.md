@@ -190,28 +190,48 @@ By appling these two seepdups, even shifting a single window can assigned a bunc
 <a name='Technical Details'></a>
 ### Technical Details
 Dive into technical details of mean-shift clustering. First, given $n$ data points $x_i\in R^d$ the multivariate kernel density function is calculated by:
+
 $$
 \hat{f_K} = \frac{1}{nh^d} \sum_{i=1}^{n}K(\frac{x-x_i}{h})
 $$
+
 where $K(x)$ is the function of a radially symmetric kernel and $h$ defines the radius of the kernel.
 
 To shift the kernel, we need to compute the gradient of this kernel density function, which is:
+
 $$
 \nabla\hat{f}(x) = \frac{2c_{k,d}}{nh^{d+2}} [\sum_{i=1}^{n}g(\|\frac{x-x_i}{h})\|^2] [\frac{\sum_{i=1}^{n}x_ig(\|\frac{x-x_i}{h})\|^2}{\sum_{i=1}^{n}g(\|\frac{x-x_i}{h})\|^2}-x]
 $$
+
 where $g(x)$ denotes the derivative of the selected kernel profile. Note that the last term is the mean-shift vector that points towards the direction of maximum density.
 
 In practice, the mean-shift calculation above can be analyzed into three procedures:
-1. Compute the mean-shift vector $m$: $$[\frac{\sum_{i=1}^{n}x_ig(\|\frac{x-x_i}{h})\|^2}{\sum_{i=1}^{n}g(\|\frac{x-x_i}{h})\|^2}-x]$$
-2. Translate the density window: $$x^{t+1}_i = x^{t}_i + m(x^{t}_i)$$
-3. Iterate steps 1 and 2 until converge: $$\nabla f(x_i) = 0$$
+1. Compute the mean-shift vector $m$:
+
+$$[\frac{\sum_{i=1}^{n}x_ig(\|\frac{x-x_i}{h})\|^2}{\sum_{i=1}^{n}g(\|\frac{x-x_i}{h})\|^2}-x]$$
+
+2. Translate the density window:
+
+$$x^{t+1}_i = x^{t}_i + m(x^{t}_i)$$
+
+3. Iterate steps 1 and 2 until converge:
+
+$$\nabla f(x_i) = 0$$
 
 
 
 Additionally, there could be many different choices of the kernel function $K(x)$. Here is some examples:
-1. Rectangular:$$\phi(x) = \begin{cases} 1 \quad &a\leq x\leq b \\ 0 \quad &else \end{cases}$$
-2. Gaussian:$$\phi(x) = e^{-\frac{x_2}{2\sigma^2}}$$
-3. Epanechnikov:$$\phi(x) = $$
+1. Rectangular:
+
+$$\phi(x) = \begin{cases} 1 \quad &a\leq x\leq b \\ 0 \quad &else \end{cases}$$
+
+2. Gaussian:
+
+$$\phi(x) = e^{-\frac{x_2}{2\sigma^2}}$$
+
+3. Epanechnikov: 
+
+$$\phi(x) = \begin{cases} \frac{3}{4}(1-x^2) \quad &if|x|\leq1 \\ 0 \quad &else \end{cases}$$
 
 <a name='Summary Mean-Shift'></a>
 ### Summary Mean-Shift
